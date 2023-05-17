@@ -605,10 +605,7 @@ if __name__ == '__main__':
     parser.add_argument('--eta', type=float, default=1.1,
                         help='alpha *= eta in each step for scheduler exp (default 1.1)')
     parser.add_argument('--p', type=int, default=2, help='p for scheduler root-p (default 2)')
-    parser.add_argument('--spl_type', type=str, default='welsch',
-                        choices=['hard', 'linear', 'log', 'mix2', 'logistic', 'poly', 'welsch', 'cauchy', 'huber',
-                                 'l1l2'],
-                        help='type of soft sp-regularizer (default welsch)')
+    parser.add_argument('--spl_type', type=str, default='welsch', help='type of soft sp-regularizer (default welsch)')
     parser.add_argument('--mix2_gamma', type=float, default=1.0, help='gamma in mixture2 (default 1.0)')
     parser.add_argument('--poly_t', type=int, default=3, help='t in polynomial (default 3)')
 

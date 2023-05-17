@@ -60,31 +60,16 @@ class TrainingScheduler:
     def get_next_ratio(self):
         if self.type == 'const':
             ratio = self.init_ratio
-        elif self.type == 'exp':
-            assert self.eta is not None, 'must specify eta for scheduler exp'
-            ratio = self.init_ratio * self.cal_lib.pow(self.eta, self.step)
         elif self.type == 'linear':
             ratio = self.init_ratio + (self.max_thresh - self.init_ratio) / self.grow_steps * self.step
-        elif self.type == 'rootp':
-            assert self.p is not None, 'must specify p for scheduler rootp'
-            ratio = self.cal_lib.sqrt(
-                (self.max_thresh * self.max_thresh - self.cal_lib.pow(self.init_ratio,
-                                                                      self.p)) / self.grow_steps * self.step + self.cal_lib.pow(
-                    self.init_ratio, self.p))
-        elif self.type == 'geom':
-            ratio = self.cal_lib.pow(2.0, (
-                    self.cal_lib.log2(self.max_thresh) - self.cal_lib.log2(self.init_ratio)) / self.grow_steps * self.step + self.cal_lib.log2(
-                self.init_ratio))
-        elif self.type == 'convex':
+        elif self.type == 'convex':  # from fast to slow
             ratio = self.init_ratio + (self.max_thresh - self.init_ratio) * self.cal_lib.sin(self.step / self.grow_steps * np.pi * 0.5)
-        elif self.type == 'cos_f':  # from fast to slow
-            ratio = self.init_ratio + self.cal_lib.cos(self.grow_steps / (self.step + self.grow_steps) * np.pi * 0.5) * (self.max_thresh - self.init_ratio)
-        elif self.type == 'cos_s':  # from slow to fast
+        elif self.type == 'concave':  # from slow to fast
             if self.step > self.grow_steps:
                 ratio = self.max_thresh
             else:
                 ratio = self.init_ratio + (self.max_thresh - self.init_ratio) * (1. - self.cal_lib.cos(self.step / self.grow_steps * np.pi * 0.5))
-        elif self.type == 'concave':
+        elif self.type == 'exp':
             assert 0 <= self.lam <= 1
             ratio = self.init_ratio + (self.max_thresh - self.init_ratio) * (1. - self.lam ** self.step)
         else:
