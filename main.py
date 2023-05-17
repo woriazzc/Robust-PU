@@ -613,7 +613,7 @@ if __name__ == '__main__':
     parser.add_argument('--poly_t', type=int, default=3, help='t in polynomial (default 3)')
 
     # PU
-    parser.add_argument('--pre_loss', type=str, default='bce', choices=['bce', 'nnpu', 'upu'])
+    parser.add_argument('--pre_loss', type=str, default='nnpu', choices=['bce', 'nnpu', 'upu'])
     parser.add_argument('--loss', type=str, default='bce', choices=['bce', 'nnpu', 'upu', 'focal'])
     parser.add_argument('--focal_gamma', type=float, default=1.0, help='gamma for focal loss')
     parser.add_argument('--hardness', type=str, default='logistic',

@@ -7,8 +7,9 @@ This repo contains the official **PyTorch** code for Robust-PU.
 
 We utilize a novel "hardness" measure to distinguish unlabeled samples with a high chance of being negative from unlabeled samples with large label noise. An iterative training strategy is then implemented to fine-tune the selection of negative samples during the training process in an iterative manner to include more "easy" samples in the early stage of training.
 
+## Usage
 
-## Environment
+### Requirements
 
 Python 3.9
 
@@ -20,10 +21,4 @@ Python 3.9
    pip install -r requirements.txt
    ```
 
-## Preparing Data
-
-**data/**
-
-# Training
-
-samples in **run.sh**
+### Experiments
