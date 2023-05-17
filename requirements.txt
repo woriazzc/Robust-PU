@@ -1,0 +1,9 @@
+transformers
+scipy
+sklearn
+pandas
+matplotlib
+azureml-core
+mlflow
+azureml-mlflow
+higher

@@ -1,0 +1,31 @@
+# Pycharm files
+.idea/
+__pycache__/
+*.pyc
+
+# Jupyter files
+.virtual_documents/
+.ipynb_checkpoints/
+
+data/
+data_anal/
+hypergrad/
+logs/
+checkpoints/
+results/
+models/
+
+amlt/
+mlruns/
+
+.amlignore
+.amltconfig
+
+*.pth
+*.npy
+*.txt
+*.pdf
+
+*.yaml
+run.sh
+search.py
